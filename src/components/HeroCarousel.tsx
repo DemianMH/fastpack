@@ -7,64 +7,88 @@ import Link from 'next/link';
 const slides = [
   {
     id: 1,
-    title: "Automatiza y Protege",
-    highlight: "Tu Producción",
-    description: "Soluciones integrales en maquinaria de empaque y materiales de embalaje. Tecnología que optimiza costos y logística.",
-    image: "https://placehold.co/600x600/png?text=Paletizadora+ACMI", 
+    title: "Automatiza tu Llenado",
+    highlight: "Precisión Total",
+    description: "Llenadoras lineales para líquidos y viscosos. Control exacto de dosificación para evitar desperdicios y aumentar tu producción.",
+    image: "/maquinaria/llenadora.jpeg",
     link: "/maquinaria",
-    cta: "Ver Maquinaria"
+    cta: "Ver Llenadoras"
   },
   {
     id: 2,
-    title: "Embalaje Seguro con",
-    highlight: "Sistema Pregis",
-    description: "Papel 100% reciclable y moldeable para proteger tus productos durante el envío. Sustentabilidad y resistencia garantizada.",
-    image: "https://placehold.co/600x600/png?text=Sistema+Papel",
-    link: "/materiales",
-    cta: "Ver Materiales"
+    title: "Pesaje Inteligente",
+    highlight: "Multicabezal",
+    description: "Básculas de 10 cabezales con pantalla táctil. Velocidad de hasta 65 paquetes por minuto para optimizar tu proceso de empaque.",
+    image: "/maquinaria/basculacontadora.jpeg",
+    link: "/maquinaria",
+    cta: "Ver Básculas"
   },
   {
     id: 3,
-    title: "Logística Integral",
-    highlight: "Estratégica",
-    description: "Servicio de recolección, gestión aduanal y envío de mercancía a todo México. Soluciones de transporte eficientes.",
-    image: "https://placehold.co/600x600/png?text=Logistica+Nacional",
-    link: "/servicios",
-    cta: "Ver Servicios"
+    title: "Etiquetado Perfecto",
+    highlight: "Serie MT-200",
+    description: "Soluciones automáticas para envases cilíndricos. Alta velocidad y acabado profesional sin arrugas para tu marca.",
+    image: "/maquinaria/etiquetadora.jpeg",
+    link: "/maquinaria",
+    cta: "Ver Etiquetadoras"
   }
 ];
 
 export default function HeroCarousel() {
   const [current, setCurrent] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
 
+  // Evita problemas de hidratación con el video
   useEffect(() => {
+    setIsMounted(true);
     const timer = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
     }, 6000); 
     return () => clearInterval(timer);
   }, []);
 
-  return (
-    <section id="inicio" className="relative bg-[#1e5f74] overflow-hidden min-h-[600px] flex items-center">
-        
-        {/* Fondo sutil (Opacidad reducida) */}
-        <div className="absolute inset-0 bg-[url('https://placehold.co/1920x1080/133b4a/ffffff?text=FastPack+Industrial')] bg-cover opacity-5 mix-blend-overlay"></div>
+  if (!isMounted) return null;
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12 md:py-0">
+  return (
+    // CAMBIO 1: Quitamos el bg-[#1e5f74] de aquí y lo ponemos como fallback abajo
+    <section id="inicio" className="relative overflow-hidden min-h-[600px] flex items-center bg-gray-900">
+        
+        {/* --- VIDEO DE FONDO --- */}
+        <div className="absolute inset-0 z-0">
+            {/* Fallback color por si el video tarda en cargar */}
+            <div className="absolute inset-0 bg-[#1e5f74] z-[-1]"></div>
+            
+            <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover"
+            >
+                {/* Verifica que este sea el nombre EXACTO en tu carpeta public/maquinaria */}
+                <source src="/videopruccion.mp4" type="video/mp4" />
+            </video>
+            
+            {/* Capa oscura semitransparente para que el texto resalte */}
+            <div className="absolute inset-0 bg-black/50 z-10"></div>
+        </div>
+
+        {/* --- CONTENIDO --- */}
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-12 md:py-0 z-20">
           <div className="flex flex-col md:flex-row items-center justify-between gap-10">
             
-            {/* Contenido de Texto (Izquierda) */}
-            <div className="md:w-1/2 z-10 relative min-h-[300px] flex items-center">
+            {/* Texto (Izquierda) */}
+            <div className="md:w-1/2 relative min-h-[300px] flex items-center">
                {slides.map((slide, index) => (
                  <div 
                     key={slide.id} 
                     className={`transition-all duration-1000 absolute top-0 left-0 w-full ${index === current ? 'opacity-100 translate-y-0 relative' : 'opacity-0 translate-y-8 absolute pointer-events-none'}`}
                  >
-                    <h1 className="text-4xl md:text-6xl font-black mb-6 leading-tight text-white">
+                    <h1 className="text-4xl md:text-6xl font-black mb-6 leading-tight text-white drop-shadow-2xl">
                       {slide.title} <br/>
                       <span className="text-yellow-400">{slide.highlight}</span>
                     </h1>
-                    <p className="text-lg text-gray-200 mb-8 max-w-lg leading-relaxed">
+                    <p className="text-lg text-gray-100 mb-8 max-w-lg leading-relaxed drop-shadow-lg font-medium">
                       {slide.description}
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4">
@@ -77,7 +101,7 @@ export default function HeroCarousel() {
                       <a 
                         href="https://wa.me/5213319932097" 
                         target="_blank" 
-                        className="border-2 border-white text-white px-8 py-3 rounded-full font-bold text-center hover:bg-white hover:text-[#1e5f74] transition-all"
+                        className="border-2 border-white text-white px-8 py-3 rounded-full font-bold text-center hover:bg-white hover:text-[#1e5f74] transition-all backdrop-blur-sm"
                       >
                         Asesoría Gratuita
                       </a>
@@ -86,25 +110,23 @@ export default function HeroCarousel() {
                ))}
             </div>
 
-            {/* Imagen Cambiante (Derecha) - Ajustada para ser menos "grande" */}
-            <div className="md:w-1/2 flex justify-center relative h-[320px] w-full items-center mt-8 md:mt-0">
-                {/* Marco decorativo (Más pequeño y centrado) */}
-                <div className="absolute w-[80%] h-[90%] border-2 border-white/20 rounded-xl transform rotate-2"></div>
+            {/* Imagen Cambiante (Derecha) */}
+            <div className="md:w-1/2 flex justify-center relative h-[350px] w-full items-center mt-8 md:mt-0">
+                <div className="absolute w-[80%] h-[90%] border-2 border-white/30 rounded-xl transform rotate-2"></div>
                 
                 {slides.map((slide, index) => (
                     <div 
                         key={slide.id}
                         className={`absolute inset-0 flex items-center justify-center transition-all duration-1000 ease-in-out ${index === current ? 'opacity-100 scale-100' : 'opacity-0 scale-95'}`}
                     >
-                         {/* Contenedor de imagen más compacto */}
-                         <div className="relative w-[85%] h-full p-6 bg-white/5 backdrop-blur-sm rounded-xl flex items-center justify-center shadow-2xl border border-white/10">
+                         <div className="relative w-[85%] h-full p-4 bg-white/10 backdrop-blur-md rounded-xl flex items-center justify-center shadow-2xl border border-white/20 overflow-hidden">
                             <Image 
                                 src={slide.image} 
                                 alt={slide.title} 
-                                width={500} 
-                                height={500} 
-                                className="object-contain max-h-full drop-shadow-xl"
+                                fill
+                                className="object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-500"
                                 priority={index === 0}
+                                sizes="(max-width: 768px) 100vw, 50vw"
                             />
                          </div>
                     </div>
