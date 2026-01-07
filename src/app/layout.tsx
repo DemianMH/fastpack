@@ -34,7 +34,7 @@ export default function RootLayout({
           
           {/* Botón 1: Ventas General (Verde Clásico WhatsApp) */}
           <a 
-            href="https://wa.me/5213321696031" 
+            href="https://wa.me/5213319932097" 
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center justify-center w-16 h-16 bg-[#25D366] rounded-full shadow-xl hover:scale-110 transition-transform duration-300 relative"
@@ -51,17 +51,17 @@ export default function RootLayout({
           
           {/* Botón 2: Soporte / Otra línea (Verde Oscuro Institucional) */}
           <a 
-            href="https://wa.me/5213319932097" 
+            href="https://wa.me/5213321696031" 
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center justify-center w-16 h-16 bg-[#128C7E] rounded-full shadow-xl hover:scale-110 transition-transform duration-300 relative"
-            title="Soporte Técnico"
+            title="Ventas 2"
           >
             <FaWhatsapp className="text-white text-4xl" />
              
              {/* Tooltip opcional */}
             <span className="absolute right-full mr-3 bg-white text-gray-800 text-xs font-bold px-2 py-1 rounded shadow-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-              Soporte
+              Vnetas 2
             </span>
           </a>
 
