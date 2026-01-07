@@ -7,7 +7,6 @@ export interface Product {
 }
 
 export const products: Product[] = [
-  // --- PRODUCTOS CON FOTOS REALES (Prioridad Alta) ---
   { 
     id: 1, 
     name: "Báscula Multicabezal (10 Cabezales)", 

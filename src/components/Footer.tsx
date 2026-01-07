@@ -46,7 +46,7 @@ export default function Footer() {
             </li>
             <li className="flex items-center">
               <span className="mr-2 text-yellow-400">📱</span>
-              <a href="https://wa.me/5213330125998" className="hover:text-yellow-300">33 3012 5998</a>
+              <a href="https://wa.me/5213321696031" className="hover:text-yellow-300">33 2169 6031</a>
             </li>
           </ul>
         </div>
