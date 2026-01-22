@@ -48,7 +48,7 @@ export const products: Product[] = [
   { id: 7, name: "Túnel de Termoencogido", category: "Maquinaria", description: "Acabado profesional para empaques múltiples usando calor controlado.", image: "https://placehold.co/600x400/1e5f74/ffffff?text=Tunel+Termo" },
   
   // Materiales (Pregis / Consumibles)
-  { id: 16, name: "Sistema de Papel Easypack", category: "Materiales", description: "Crea relleno de papel 100% reciclado para proteger envíos.", image: "https://placehold.co/600x400/1e5f74/ffffff?text=Papel+Easypack" },
+  { id: 16, name: "Bobinas de polietileno y polipropileno", category: "Materiales", description: "Crea relleno de papel 100% reciclado para proteger envíos.", image: "/maquinaria/bobinas.jpeg" },
   { id: 17, name: "Rollo de Burbuja Industrial", category: "Materiales", description: "Protección clásica contra impactos para productos frágiles.", image: "https://placehold.co/600x400/1e5f74/ffffff?text=Rollo+Burbuja" },
   { id: 18, name: "Película Stretch (Playo)", category: "Materiales", description: "Mayor resistencia al rasgado con menos capas. Ahorro garantizado.", image: "https://placehold.co/600x400/1e5f74/ffffff?text=Playo+Stretch" },
   
