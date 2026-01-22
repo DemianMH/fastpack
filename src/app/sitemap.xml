@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://fastpackgdl.com'; // Cambia esto a tu dominio real cuando lo tengas
+  const baseUrl = 'https://fastpackgdl.com';
 
   return [
     {

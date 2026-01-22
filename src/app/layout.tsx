@@ -4,8 +4,8 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { FaWhatsapp } from "react-icons/fa"; 
 
-// URL base de tu sitio (cámbialo cuando tengas el dominio final, por ahora usa el de Netlify o el final)
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://fastpackgdl.com"; 
+// URL base de tu sitio (importante para SEO)
+const siteUrl = "https://fastpackgdl.com"; 
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -19,15 +19,6 @@ export const metadata: Metadata = {
     "etiquetadoras automaticas", "básculas industriales", "playo", 
     "llenadoras de liquidos", "automatización industrial", "Zapopan", "Jalisco"
   ],
-  authors: [{ name: "FastPack GDL" }],
-  creator: "FastPack",
-  publisher: "FastPack",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
-  // Open Graph para Facebook/WhatsApp
   openGraph: {
     title: "FastPack | Soluciones de Empaque Industrial",
     description: "Expertos en maquinaria de empaque y materiales en Jalisco. Optimiza tu producción hoy.",
@@ -35,7 +26,7 @@ export const metadata: Metadata = {
     siteName: "FastPack GDL",
     images: [
       {
-        url: "/maquinaria/llenadora.jpeg", // Usamos una de tus mejores fotos
+        url: "/maquinaria/llenadora.jpeg",
         width: 800,
         height: 600,
         alt: "Maquinaria FastPack",
@@ -44,7 +35,6 @@ export const metadata: Metadata = {
     locale: "es_MX",
     type: "website",
   },
-  // Robots para asegurar indexación
   robots: {
     index: true,
     follow: true,
@@ -56,11 +46,10 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  // Geo-tags para SEO Local
   other: {
     "geo.region": "MX-JAL",
     "geo.placename": "Zapopan",
-    "geo.position": "20.7235;-103.3850", // Coordenadas aprox de Av Guadalajara
+    "geo.position": "20.7235;-103.3850",
     "ICBM": "20.7235, -103.3850"
   }
 };
@@ -71,7 +60,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   
-  // Esquema de Datos Estructurados para Negocio Local (JSON-LD)
+  // JSON-LD para Negocio Local
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
@@ -100,19 +89,12 @@ export default function RootLayout({
         "opens": "09:00",
         "closes": "18:00"
       }
-    ],
-    "sameAs": [
-      "https://www.facebook.com/fast.pack.2025",
-      "https://www.instagram.com/fast_pack126/",
-      "https://www.tiktok.com/@fast.pack",
-      "https://youtube.com/@fastpackgdl"
     ]
   };
 
   return (
     <html lang="es" className="scroll-smooth">
       <head>
-        {/* Inyectamos el JSON-LD */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -132,7 +114,6 @@ export default function RootLayout({
             rel="noopener noreferrer"
             className="group flex items-center justify-center w-16 h-16 bg-[#25D366] rounded-full shadow-xl hover:scale-110 transition-transform duration-300 relative"
             title="Ventas General"
-            aria-label="Contactar por WhatsApp Ventas"
           >
             <FaWhatsapp className="text-white text-4xl" />
             <span className="absolute right-full mr-3 bg-white text-gray-800 text-xs font-bold px-2 py-1 rounded shadow-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
@@ -141,16 +122,15 @@ export default function RootLayout({
           </a>
           
           <a 
-            href="https://wa.me/5213330125998" 
+            href="https://wa.me/5213321696031" 
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-center justify-center w-16 h-16 bg-[#128C7E] rounded-full shadow-xl hover:scale-110 transition-transform duration-300 relative"
-            title="Soporte Técnico"
-            aria-label="Contactar por WhatsApp Soporte"
+            title="Ventas 2"
           >
             <FaWhatsapp className="text-white text-4xl" />
             <span className="absolute right-full mr-3 bg-white text-gray-800 text-xs font-bold px-2 py-1 rounded shadow-md opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-              Soporte
+              Ventas 2
             </span>
           </a>
         </div>

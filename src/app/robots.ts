@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/private/',
     },
-    sitemap: 'https://fastpackgdl.com/sitemap.xml', // Asegúrate que coincida con tu dominio
+    sitemap: 'https://fastpackgdl.com/sitemap.xml',
   };
 }
