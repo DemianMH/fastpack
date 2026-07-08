@@ -3,7 +3,7 @@ import { products } from "../../data/products";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Materiales de Embalaje | FastPack Guadalajara",
+  title: "Maquinaria para  Empaque y Embalaje | FastPack Guadalajara",
   description: "Venta de playo, burbuja, cinta adhesiva y sistemas de protección de papel en Jalisco.",
 };
 

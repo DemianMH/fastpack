@@ -1,6 +1,6 @@
 export const siteConfig = {
   name: "FastPack GDL",
-  legalName: "FastPack Maquinaria de Empaque",
+  legalName: "FastPack Maquinaria  Maquinaria para  empaque y embalaje",
   siteUrl: "https://fastpackgdl.com",
 
   slogan: "Maquinaria de empaque, materiales de embalaje y soluciones industriales en Jalisco",
