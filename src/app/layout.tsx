@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
   title: {
     default:
-      "FastPack GDL | Maquinaria de Empaque y Embalaje en Zapopan, Jalisco",
+      "FastPack GDL | Maquinaria de Empaque y Embalaje en Tonalá, Jalisco",
     template: "%s | FastPack GDL",
   },
 
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   publisher: siteConfig.name,
 
   openGraph: {
-    title: "FastPack GDL | Maquinaria de Empaque en Zapopan",
+    title: "FastPack GDL | Maquinaria de Empaque en Tonalá, Jalisco",
     description: siteConfig.shortDescription,
     url: siteConfig.siteUrl,
     siteName: siteConfig.name,
@@ -46,14 +46,14 @@ export const metadata: Metadata = {
         url: "/maquinaria/llenadora.jpeg",
         width: 1200,
         height: 630,
-        alt: "FastPack GDL - maquinaria de empaque en Zapopan, Jalisco",
+        alt: "FastPack GDL - maquinaria de empaque en Tonalá, Jalisco",
       },
     ],
   },
 
   twitter: {
     card: "summary_large_image",
-    title: "FastPack GDL | Maquinaria de Empaque en Zapopan",
+    title: "FastPack GDL | Maquinaria de Empaque en Tonalá, Jalisco",
     description: siteConfig.shortDescription,
     images: ["/maquinaria/llenadora.jpeg"],
   },
@@ -74,10 +74,10 @@ export const metadata: Metadata = {
 
   other: {
     "geo.region": "MX-JAL",
-    "geo.placename": "Zapopan, Jalisco",
+    "geo.placename": "Tonalá, Jalisco",
     "business:contact_data:country_name": "Mexico",
     "business:contact_data:region": "Jalisco",
-    "business:contact_data:locality": "Zapopan",
+    "business:contact_data:locality": "Tonalá",
     "business:contact_data:postal_code": siteConfig.address.postalCode,
     "business:contact_data:street_address": `${siteConfig.address.street}, ${siteConfig.address.neighborhood}`,
   },
@@ -107,6 +107,10 @@ export default function RootLayout({
       addressCountry: siteConfig.address.country,
     },
     areaServed: [
+      {
+        "@type": "City",
+        name: "Tonalá",
+      },
       {
         "@type": "City",
         name: "Zapopan",
@@ -151,13 +155,7 @@ export default function RootLayout({
         "@type": "OpeningHoursSpecification",
         dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
         opens: "09:00",
-        closes: "18:00",
-      },
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: "Saturday",
-        opens: "09:00",
-        closes: "14:00",
+        closes: "17:00",
       },
     ],
   };

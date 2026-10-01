@@ -4,8 +4,10 @@ import { products } from "../../data/products";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Maquinaria de Empaque | FastPack Guadalajara",
-  description: "Catálogo de paletizadoras, selladoras de cajas, túneles de encogido y maquinaria de final de línea en Jalisco.",
+  title: "Maquinaria de Empaque y Embalaje en Guadalajara y Tonalá",
+  description:
+    "Catálogo de maquinaria de empaque: llenadoras, etiquetadoras, básculas multicabezal, selladoras de cajas, flejadoras, paletizadoras y túneles de termoencogido. Venta, asesoría y cotización en Tonalá, Guadalajara y todo Jalisco.",
+  alternates: { canonical: "https://fastpackgdl.com/maquinaria" },
 };
 
 export default function MaquinariaPage() {

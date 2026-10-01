@@ -3,8 +3,10 @@ import { products } from "../../data/products";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Maquinaria para  Empaque y Embalaje | FastPack Guadalajara",
-  description: "Venta de playo, burbuja, cinta adhesiva y sistemas de protección de papel en Jalisco.",
+  title: "Materiales de Embalaje: Playo, Burbuja y Bobinas en Guadalajara",
+  description:
+    "Venta de película stretch (playo), rollo de burbuja, bobinas de poliolefina y polipropileno y materiales de embalaje industrial. Mayoreo y entrega en Tonalá, Guadalajara y todo Jalisco.",
+  alternates: { canonical: "https://fastpackgdl.com/materiales" },
 };
 
 export default function MaterialesPage() {

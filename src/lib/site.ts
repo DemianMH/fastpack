@@ -6,19 +6,19 @@ export const siteConfig = {
   slogan: "Maquinaria de empaque, materiales de embalaje y soluciones industriales en Jalisco",
 
   description:
-    "FastPack GDL ofrece maquinaria de empaque, materiales de embalaje, básculas industriales, etiquetadoras, llenadoras, selladoras, flejadoras y soluciones logísticas para empresas en Zapopan, Guadalajara y todo México.",
+    "FastPack GDL ofrece maquinaria de empaque, materiales de embalaje, básculas industriales, etiquetadoras, llenadoras, selladoras, flejadoras y soluciones logísticas para empresas en Tonalá, Guadalajara, Zapopan y todo México. Asesoría técnica, cotización por WhatsApp y entrega en el área metropolitana de Guadalajara.",
 
   shortDescription:
-    "Maquinaria de empaque, materiales de embalaje y soluciones logísticas en Zapopan, Jalisco.",
+    "Maquinaria de empaque, materiales de embalaje y soluciones logísticas en Tonalá, Jalisco.",
 
   address: {
-    street: "Calle Ávila 439",
-    neighborhood: "Col. Lomas de Zapopan",
-    city: "Zapopan",
+    street: "C. Tepayucan 26",
+    neighborhood: "Cd Aztlán",
+    city: "Tonalá",
     state: "Jalisco",
-    postalCode: "45130",
+    postalCode: "45402",
     country: "MX",
-    full: "Calle Ávila 439, Col. Lomas de Zapopan, CP 45130, Zapopan, Jalisco",
+    full: "C. Tepayucan 26, Cd Aztlán, 45402 Tonalá, Jalisco",
   },
 
   phones: {
@@ -42,11 +42,19 @@ export const siteConfig = {
   },
 
   mapQuery:
-    "Calle Ávila 439, Col. Lomas de Zapopan, CP 45130, Zapopan, Jalisco",
+    "C. Tepayucan 26, Cd Aztlán, 45402 Tonalá, Jalisco",
 
   keywords: [
     "maquinaria de empaque en Guadalajara",
+    "maquinaria de empaque en Tonalá",
     "maquinaria de empaque en Zapopan",
+    "venta de maquinaria industrial en Tonalá Jalisco",
+    "empacadoras industriales Guadalajara",
+    "túnel de termoencogido",
+    "paletizadora automática",
+    "bobinas de poliolefina",
+    "película stretch Guadalajara",
+    "rollo de burbuja industrial",
     "maquinaria de embalaje en Guadalajara",
     "llenadoras industriales",
     "etiquetadoras automáticas",
@@ -60,6 +68,12 @@ export const siteConfig = {
     "FastPack GDL",
     "maquinaria para empaque en México",
   ],
+};
+
+export const hours = {
+  weekdaysOpens: "09:00",
+  weekdaysCloses: "17:00",
+  label: "Lunes a viernes, hasta las 5:00 p.m.",
 };
 
 export const whatsappLinks = {

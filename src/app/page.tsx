@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { products } from "../data/products";
 import HeroCarousel from "../components/HeroCarousel";
-import { siteConfig, whatsappLinks } from "../lib/site";
+import { hours, siteConfig, whatsappLinks } from "../lib/site";
 
 export default function Home() {
   const featuredProducts = products.slice(0, 8);
@@ -15,7 +15,7 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <span className="text-yellow-600 font-bold uppercase tracking-wider text-sm">
-              FastPack GDL en Zapopan, Jalisco
+              FastPack GDL en Tonalá, Jalisco
             </span>
 
             <h1 className="text-3xl md:text-5xl font-black text-[#1e5f74] mt-3">
@@ -24,7 +24,7 @@ export default function Home() {
             </h1>
 
             <p className="mt-5 text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              En FastPack GDL ayudamos a empresas de Guadalajara, Zapopan y
+              En FastPack GDL ayudamos a empresas de Tonalá, Guadalajara, Zapopan y
               todo México a mejorar sus procesos de empaque con llenadoras,
               etiquetadoras, básculas industriales, selladoras, flejadoras,
               película stretch, materiales de embalaje y asesoría técnica.
@@ -33,6 +33,8 @@ export default function Home() {
             <p className="mt-4 text-gray-700 font-medium">
               Ubicación: {siteConfig.address.full}
             </p>
+
+            <p className="mt-1 text-gray-600 text-sm">Horario: {hours.label}</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

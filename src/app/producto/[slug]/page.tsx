@@ -1,4 +1,6 @@
 import { products } from "../../../data/products";
+import { productContent } from "../../../data/productContent";
+import { siteConfig, whatsappLinks } from "../../../lib/site";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -10,6 +12,17 @@ interface Props {
   };
 }
 
+function absoluteImage(src: string) {
+  return src.startsWith("http") ? src : `${siteConfig.siteUrl}${src}`;
+}
+
+function categoryHref(category: string) {
+  if (category === "Materiales") return "/materiales";
+  if (["Maquinaria", "Pesaje", "Alimentos", "Seguridad"].includes(category))
+    return "/maquinaria";
+  return "/servicios";
+}
+
 // 1. GENERAR METADATOS SEO PARA CADA PRODUCTO
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
@@ -19,14 +32,34 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: "Producto no encontrado" };
   }
 
+  const content = productContent[product.slug];
+  const title = content?.seoTitle ?? `${product.name} en Guadalajara`;
+  const description =
+    content?.seoDescription ??
+    `${product.name} en Tonalá y Guadalajara. ${product.description}`;
+  const url = `${siteConfig.siteUrl}/producto/${product.slug}`;
+  const image = absoluteImage(product.image);
+
   return {
-    title: `${product.name} | FastPack Maquinaria`,
-    description: `Compra ${product.name} en Guadalajara. ${product.description.substring(0, 150)}...`,
+    title,
+    description,
+    keywords: [
+      product.name,
+      `${product.name} Guadalajara`,
+      `${product.name} Tonalá`,
+      ...siteConfig.keywords.slice(0, 6),
+    ],
+    alternates: { canonical: url },
     openGraph: {
-      title: product.name,
-      description: product.description,
-      images: [product.image],
+      title,
+      description,
+      url,
+      siteName: siteConfig.name,
+      locale: "es_MX",
+      type: "website",
+      images: [{ url: image, alt: product.name }],
     },
+    twitter: { card: "summary_large_image", title, description, images: [image] },
   };
 }
 
@@ -45,25 +78,55 @@ export default async function ProductPage({ params }: Props) {
     notFound();
   }
 
-  // 3. DATOS ESTRUCTURADOS (SCHEMA DE PRODUCTO)
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    "name": product.name,
-    "image": `https://fastpackgdl.com${product.image}`,
-    "description": product.description,
-    "brand": {
-      "@type": "Brand",
-      "name": "FastPack"
+  const content = productContent[product.slug];
+  const url = `${siteConfig.siteUrl}/producto/${product.slug}`;
+
+  // 3. DATOS ESTRUCTURADOS (Producto, migas de pan y preguntas frecuentes)
+  const jsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: product.name,
+      image: absoluteImage(product.image),
+      description: content?.seoDescription ?? product.description,
+      category: product.category,
+      brand: { "@type": "Brand", name: "FastPack" },
+      offers: {
+        "@type": "Offer",
+        url,
+        priceCurrency: "MXN",
+        availability: "https://schema.org/InStock",
+        seller: { "@type": "Organization", name: siteConfig.name },
+      },
     },
-    "offers": {
-      "@type": "Offer",
-      "url": `https://fastpackgdl.com/producto/${product.slug}`,
-      "priceCurrency": "MXN",
-      "availability": "https://schema.org/InStock",
-      "price": "0" 
-    }
-  };
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Inicio", item: siteConfig.siteUrl },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: product.category,
+          item: `${siteConfig.siteUrl}${categoryHref(product.category)}`,
+        },
+        { "@type": "ListItem", position: 3, name: product.name, item: url },
+      ],
+    },
+    ...(content?.faqs.length
+      ? [
+          {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: content.faqs.map((f) => ({
+              "@type": "Question",
+              name: f.q,
+              acceptedAnswer: { "@type": "Answer", text: f.a },
+            })),
+          },
+        ]
+      : []),
+  ];
 
   return (
     <main className="min-h-screen bg-gray-50 py-12 md:py-20">
@@ -77,7 +140,7 @@ export default async function ProductPage({ params }: Props) {
         <div className="mb-8 text-sm text-gray-500">
           <Link href="/" className="hover:text-[#1e5f74]">Inicio</Link> 
           <span className="mx-2">/</span>
-          <Link href={`/${product.category.toLowerCase()}`} className="hover:text-[#1e5f74]">{product.category}</Link>
+          <Link href={categoryHref(product.category)} className="hover:text-[#1e5f74]">{product.category}</Link>
           <span className="mx-2">/</span>
           <span className="text-gray-800 font-medium">{product.name}</span>
         </div>
@@ -127,7 +190,7 @@ export default async function ProductPage({ params }: Props) {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <a 
-                  href={`https://wa.me/5213319932097?text=Hola,%20me%20interesa%20comprar%20la:%20${product.name}`}
+                  href={whatsappLinks.quoteProduct(product.name)}
                   target="_blank"
                   className="flex-1 bg-[#25D366] text-white text-center py-4 rounded-xl font-bold hover:bg-green-600 transition-all flex items-center justify-center gap-2 shadow-lg hover:shadow-green-200"
                 >
@@ -144,6 +207,56 @@ export default async function ProductPage({ params }: Props) {
             </div>
           </div>
         </div>
+
+        {content && (
+          <div className="mt-10 grid gap-8 lg:grid-cols-3">
+            <section className="lg:col-span-2 bg-white rounded-2xl shadow border border-gray-100 p-8">
+              <h2 className="text-2xl font-black text-[#1e5f74] mb-4">
+                Descripción de {product.name}
+              </h2>
+              {content.longDescription.map((para, i) => (
+                <p key={i} className="text-gray-600 leading-relaxed mb-4">
+                  {para}
+                </p>
+              ))}
+
+              <h2 className="text-2xl font-black text-[#1e5f74] mt-8 mb-4">
+                Preguntas frecuentes
+              </h2>
+              <div className="space-y-4">
+                {content.faqs.map((f) => (
+                  <div key={f.q}>
+                    <h3 className="font-bold text-gray-800">{f.q}</h3>
+                    <p className="text-gray-600">{f.a}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            <aside className="space-y-8">
+              <section className="bg-white rounded-2xl shadow border border-gray-100 p-8">
+                <h2 className="text-xl font-black text-[#1e5f74] mb-4">Características</h2>
+                <ul className="list-disc pl-5 space-y-2 text-gray-600">
+                  {content.features.map((f) => (
+                    <li key={f}>{f}</li>
+                  ))}
+                </ul>
+              </section>
+              <section className="bg-white rounded-2xl shadow border border-gray-100 p-8">
+                <h2 className="text-xl font-black text-[#1e5f74] mb-4">Aplicaciones</h2>
+                <ul className="list-disc pl-5 space-y-2 text-gray-600">
+                  {content.applications.map((f) => (
+                    <li key={f}>{f}</li>
+                  ))}
+                </ul>
+              </section>
+              <section className="bg-[#1e5f74] text-white rounded-2xl p-8">
+                <h2 className="text-xl font-black mb-2">Visítanos</h2>
+                <p className="text-sm text-gray-100">{siteConfig.address.full}</p>
+              </section>
+            </aside>
+          </div>
+        )}
       </div>
     </main>
   );

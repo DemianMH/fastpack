@@ -11,8 +11,8 @@ export default function Footer() {
 
           <p className="text-gray-300 text-sm leading-relaxed mb-6">
             Expertos en soluciones integrales de empaque, maquinaria,
-            materiales de embalaje y logística industrial en Zapopan,
-            Guadalajara y todo Jalisco.
+            materiales de embalaje y logística industrial en Tonalá,
+            Guadalajara, Zapopan y todo Jalisco.
           </p>
 
           <div className="flex space-x-5">
@@ -109,7 +109,7 @@ export default function Footer() {
             <li>
               <strong className="text-white">Zona de atención:</strong>
               <br />
-              Zapopan, Guadalajara, Jalisco y envíos a México.
+              Tonalá, Guadalajara, Zapopan, Jalisco y envíos a México.
             </li>
           </ul>
         </div>
