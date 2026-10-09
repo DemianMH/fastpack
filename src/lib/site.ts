@@ -12,13 +12,13 @@ export const siteConfig = {
     "Maquinaria de empaque, materiales de embalaje y soluciones logísticas en Tonalá, Jalisco.",
 
   address: {
-    street: "C. Tepayucan 26",
+    street: "C. Tepayucan 63",
     neighborhood: "Cd Aztlán",
     city: "Tonalá",
     state: "Jalisco",
     postalCode: "45402",
     country: "MX",
-    full: "C. Tepayucan 26, Cd Aztlán, 45402 Tonalá, Jalisco",
+    full: "C. Tepayucan 63, Cd Aztlán, 45402 Tonalá, Jalisco",
   },
 
   phones: {
@@ -42,7 +42,7 @@ export const siteConfig = {
   },
 
   mapQuery:
-    "C. Tepayucan 26, Cd Aztlán, 45402 Tonalá, Jalisco",
+    "C. Tepayucan 63, Cd Aztlán, 45402 Tonalá, Jalisco",
 
   keywords: [
     "maquinaria de empaque en Guadalajara",
